@@ -1,5 +1,5 @@
 import { IComputedValue, getAtom } from "mobx"
-import { IDisposer } from "./utils"
+import { IDisposer, deprecated } from "./utils"
 
 export function keepAlive(target: Object, property: string): IDisposer
 export function keepAlive(computedValue: IComputedValue<any>): IDisposer
@@ -32,6 +32,7 @@ export function keepAlive(computedValue: IComputedValue<any>): IDisposer
  * @returns {IDisposer} stops this keep alive so that the computed value goes back to normal behavior
  */
 export function keepAlive(_1: any, _2?: string) {
+    deprecated("keepAlive is deprecated, use computed with keepAlive option instead")
     const computed = (getAtom(_1, _2) as any) as IComputedValue<any>
     if (!computed)
         throw new Error(
